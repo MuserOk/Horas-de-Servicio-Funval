@@ -1,3 +1,6 @@
+
+import React from "react";
+import Login from "./pages/login";
 import { Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import HorasDeServicio from "./pages/HorasDeServicio"
@@ -6,6 +9,7 @@ import LaBrujula from "./pages/LaBrujula"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
 import { useEffect } from "react";
+
 
 
 
@@ -40,9 +44,10 @@ export default function App() {
           <Route path="/General" element={< General />} />
           <Route path="/HorasDeServicio" element={<HorasDeServicio />} />
           <Route path="/LaBrujula" element={<LaBrujula />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </main>
       <Footer />
     </div>
-  )
+  );
 }
