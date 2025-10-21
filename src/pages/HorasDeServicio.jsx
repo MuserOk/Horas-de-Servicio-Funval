@@ -1,5 +1,5 @@
 import React from "react";
-import ServiceCarousel from "../components/servicecarousel";
+import ServiceCarousel from "../components/ServiceCarousel";
 
 export default function HorasDeServicio() {
   return (

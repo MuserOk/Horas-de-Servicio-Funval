@@ -30,7 +30,7 @@ export default function MenuH() {
       {/* Botón hamburguesa */}
       <button
         onClick={() => setOpen(true)}
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 left-2 lg:hidden pt-2"
+        className=" md:hidden pt-2"
         aria-label="Abrir menú"
       >
         <svg

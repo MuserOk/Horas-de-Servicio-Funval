@@ -1,14 +1,15 @@
 import React from "react";
 
 export default function Login() {
+
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="p-8 border border-gray-400 rounded-md">
-        <h2 className="text-2xl font-bold mb-4 text-center text-blue-800">
+      <div className="p-8 border border-gray-400 rounded-md ">
+        <h2 className="text-2xl font-bold text-center text-blue-800">
           Iniciar Sesión
         </h2>
         <form>
-          <div className="relative mb-4">
+          <div className="relative">
             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
               <svg
                 className="w-5 h-5 text-gray-400"
@@ -33,7 +34,7 @@ export default function Login() {
               placeholder="Usuario"
             />
           </div>
-          <div className="relative mb-4 active:border-blue-500">
+          <div className="relative active:border-blue-500">
             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
               <svg
                 className="w-5 h-5 text-gray-400"

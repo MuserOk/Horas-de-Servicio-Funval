@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
+import {useState, useEffect } from "react";
 import Home from "./pages/Home";
 import HorasDeServicio from "./pages/HorasDeServicio";
 import General from "./pages/General";
@@ -11,6 +11,7 @@ import Header from "./components/Header";
 
 
 export default function App() {
+  const [logIn, setLogIn] = useState (false)
   // el dark mode se aplica segun la configuracion del usuario (automático)
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -28,12 +29,14 @@ export default function App() {
 
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
+
+
   // --------------------------------------------------------------------
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-      <main className="flex-1 bg-[url(/images/background_elements.svg)] bg-cover">
+      <Header logIn={logIn} setLogIn={setLogIn} />
+      <main className="flex-1 flex items-end bg-[url(/images/background_elements.svg)] bg-no-repeat dark:bg-gray-800 bg-cover">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/General" element={<General />} />
