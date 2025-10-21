@@ -1,13 +1,14 @@
 import React from "react";
-import Login from "./pages/login";
 import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
 import Home from "./pages/Home";
 import HorasDeServicio from "./pages/HorasDeServicio";
 import General from "./pages/General";
 import LaBrujula from "./pages/LaBrujula";
+import Login from "./pages/login";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import { useEffect } from "react";
+
 
 export default function App() {
   // el dark mode se aplica segun la configuracion del usuario (automático)
