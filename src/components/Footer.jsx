@@ -2,11 +2,6 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <div className='bg-[url(/bg-footer.png)] bg-cover bg-center xs:bg-blue-500 bg-amber-300 dark:bg-gray-800 w-full px-2 sm:px-4 md:px-6 flex items-center justify-between py-1 m-0'>
-      <div className='flex flex-col gap-1 items-center'>
-        <h3 className='text-[#18183b] text-xs sm:text-lg font-medium dark:text-white dark:animate-pulse'>
-          Síguenos
-        </h3>
         <div className='flex gap-2'>
           <img className='w-6 h-6 md:w-8 md:h-8 hover:bg-blue-300 rounded active:bg-blue-400 m-0' src='/social/facebook-blue.svg' alt='facebook' />
           <img className='w-6 h-6 md:w-8 md:h-8 hover:bg-blue-300 rounded active:bg-blue-400 m-0' src='/social/instagram-blue.svg' alt='instagram' />
