@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import React from 'react'
-import MenuH from './MenuH'
+import React from "react";
+import MenuH from "./MenuH";
 import { useNavigate } from "react-router-dom";
-
 
 const menuItems = [
   { label: "Home", path: "/" },
@@ -24,15 +23,30 @@ export default function Header({ logIn, setLogIn }) {
   };
 
   return (
-    <div className=" w-full dark:bg-[#153862] flex justify-between items-center px-4 sm:px-5 dark:md:px-6 dark:lg:px-10 shadow-sm h-20">
+    <div className="w-full dark:bg-[#153862] flex justify-between items-center px-4 sm:px-5 dark:md:px-6 dark:lg:px-10 shadow-sm min-h-[80px]">
+      {/* Contenedor principal: aseguramos que los elementos estén distribuidos correctamente */}
+      <div className="flex items-center w-full justify-between lg:justify-between">
+        {/* Menú hamburguesa (solo en móvil/tablet) */}
+        <div className="md:hidden flex items-center">
+          <MenuH />
+        </div>
 
-      {/* Contenedor inline-flex para que el grupo tenga ancho solo del contenido */}
-      <div className="md:inline-flex md:items-center md:space-x-18">
+        {/* Logo (centrado en pantallas pequeñas, a la izquierda en pantallas grandes) */}
+        <div className="flex items-center justify-center lg:justify-start lg:w-auto">
+          <img
+            className="block dark:hidden h-14"
+            src="/images/funval-img-light.png"
+            alt="logo funval"
+          />
+          <img
+            className="hidden dark:block h-14"
+            src="/images/funval-img-dark.jpg"
+            alt="logo funval"
+          />
+        </div>
 
-        <MenuH />
-
-        {/* Menú de navegación en escritorio (md) */}
-        <div className="hidden md:flex items-center space-x-8">
+        {/* Menú de navegación centrado (en pantallas grandes) */}
+        <div className="hidden lg:flex items-center justify-center ">
           <ul className="flex space-x-6 text-white font-semibold">
             {menuItems.map((item) => (
               <li className="hover:animate-pulse" key={item.label}>
@@ -46,30 +60,25 @@ export default function Header({ logIn, setLogIn }) {
             ))}
           </ul>
         </div>
-      </div>
 
-      <img className='block dark:hidden h-10 md:h-16 lg:h-18' src="/images/funval-img-light.png" alt="logo funval" />
-      <img className="hidden dark:block h-18  lg:h-22" src="/images/funval-img-dark.jpg" alt="logo funval" />
-
-      <div onClick={handleClick} className="cursor-pointer">
-        {!logIn ? (
-          <p className="text-blue-800 font-medium text-center md:text-lg hover:text-blue-400 active:text-blue-950 dark:text-white">
-            Iniciar Sesión
-          </p>
-        ) : (
-          <div className="text-center">
+        {/* Botón de login */}
+        <div onClick={handleClick} className="cursor-pointer">
+          {!logIn ? (
             <p className="text-blue-800 font-medium text-center md:text-lg hover:text-blue-400 active:text-blue-950 dark:text-white">
-              Cerrar Sesión
+              Iniciar Sesión
             </p>
-            <p className="text-xs lg:text-md font-medium animate-pulse text-center dark:text-white dark:font-bold">
-              Pepito Juanito
-            </p>
-          </div>
-        )}
+          ) : (
+            <div className="text-center">
+              <p className="text-blue-800 font-medium text-center md:text-lg hover:text-blue-400 active:text-blue-950 dark:text-white">
+                Cerrar Sesión
+              </p>
+              <p className="text-xs lg:text-md font-medium animate-pulse text-center dark:text-white dark:font-bold">
+                Pepito Juanito
+              </p>
+            </div>
+          )}
+        </div>
       </div>
-
-
-
     </div>
   );
 }
