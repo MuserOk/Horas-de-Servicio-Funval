@@ -1,6 +1,3 @@
-import { Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./auth/AuthContext";
-import React, { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import HorasDeServicio from "./pages/HorasDeServicio";
 import General from "./pages/General";
@@ -10,9 +7,7 @@ import Header from "./components/Header";
 import ProtectedRoute from "./components/protectedRoute"
 import PaginaDeBienvenida from "./pages/PaginaDeBienvenida";
 
-
 export default function App() {
-  // el dark mode se aplica segun la configuracion del usuario (automático)
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -30,8 +25,6 @@ export default function App() {
     return () => mediaQuery.removeEventListener("change", handleChange)
   }, []);
   // --------------------------------------------------------------------
-
-
 
   return (
     <AuthProvider>

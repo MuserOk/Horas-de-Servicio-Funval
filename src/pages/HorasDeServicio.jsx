@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import ServiceCarousel from "../components/ServiceCarousel";
+import ModalService from "../components/ModalService"; // Ajusta la ruta si está en otro lado
 
 export default function HorasDeServicio() {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleFormSubmit = (data) => {
+    console.log("Formulario enviado:", data);
+    // Aquí puedes hacer la lógica que necesites (por ejemplo, enviar a la API)
+  };
+
   return (
     <div className="py-8">
       <h1 className="text-2xl font-bold text-center mb-8 mt-8">
@@ -19,7 +27,10 @@ export default function HorasDeServicio() {
               Reporta todas tus horas de servicio, añade una descripción de tu
               servicio y subir tus fotos.
             </p>
-            <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-auto">
+            <button
+              onClick={() => setShowModal(true)}
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-auto"
+            >
               Reportar horas
             </button>
           </div>
@@ -58,6 +69,13 @@ export default function HorasDeServicio() {
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      <ModalService
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onSubmit={handleFormSubmit}
+      />
     </div>
   );
 }
