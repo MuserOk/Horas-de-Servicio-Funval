@@ -6,6 +6,10 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ProtectedRoute from "./components/protectedRoute"
 import PaginaDeBienvenida from "./pages/PaginaDeBienvenida";
+import { useEffect } from "react";
+import { AuthProvider } from "./auth/AuthContext";
+import { Routes, Route } from "react-router";
+
 
 export default function App() {
   useEffect(() => {
@@ -30,8 +34,7 @@ export default function App() {
     <AuthProvider>
       <div className="flex flex-col min-h-screen">
         <Header />
-        <main className="relative flex-1 flex items-center bg-[url(/images/background_elements.svg)] bg-no-repeat dark:bg-gray-800 bg-cover lg:justify-end">
-
+        <main className="relative min-h-screen flex-1 flex items-center bg-[url(/images/background_elements.svg)] bg-no-repeat dark:bg-gray-800 bg-cover lg:justify-end">
           <Routes>
             <Route path="/" element={<PaginaDeBienvenida />} />
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useAuth } from "../auth/AuthContext";
-import LoginModal from "../auth/Login"; // ⬅️ si ya lo tienes
+import LoginModal from "../auth/Login"; // ⬅ si ya lo tienes
 
 export default function PaginaDeBienvenida() {
 

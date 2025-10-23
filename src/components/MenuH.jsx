@@ -18,7 +18,7 @@ export default function MenuH() {
 
   // Arreglo con rutas y etiquetas
   const menuItems = [
-    { label: "Home", path: "/" },
+    { label: "Home", path: "/Home" },
     { label: "General", path: "/General" },
     { label: "Horas de Servicio", path: "/HorasDeServicio" },
     { label: "La Brújula", path: "/LaBrujula" },

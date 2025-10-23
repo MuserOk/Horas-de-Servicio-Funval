@@ -19,69 +19,10 @@ export default function Header() {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   return (
-
-             {/*arreglar conflicto*/}
-
-
-
-
-
-    <div className="w-full dark:bg-[#153862] flex justify-between items-center px-4 sm:px-5 dark:md:px-6 dark:lg:px-10 shadow-sm min-h-[80px]">
-      {/* Contenedor principal: aseguramos que los elementos estén distribuidos correctamente */}
-      <div className="flex items-center w-full justify-between lg:justify-between">
-        {/* Menú hamburguesa (solo en móvil/tablet) */}
-        <div className="md:hidden flex items-center">
-          <MenuH />
-        </div>
-
-        {/* Logo (centrado en pantallas pequeñas, a la izquierda en pantallas grandes) */}
-        <div className="flex items-center justify-center lg:justify-start lg:w-auto">
-          <img
-            className="block dark:hidden h-14"
-            src="/images/funval-img-light.png"
-            alt="logo funval"
-          />
-          <img
-            className="hidden dark:block h-14"
-            src="/images/funval-img-dark.jpg"
-            alt="logo funval"
-          />
-        </div>
-
-        {/* Menú de navegación centrado (en pantallas grandes) */}
-        <div className="hidden lg:flex items-center justify-center ">
-          <ul className="flex space-x-6 text-white font-semibold">
-            {menuItems.map((item) => (
-              <li className="hover:animate-pulse" key={item.label}>
-                <Link
-                  to={item.path}
-                  className="text-black dark:text-white hover:text-blue-300 transition duration-200"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Botón de login */}
-        <div onClick={handleClick} className="cursor-pointer">
-          {!logIn ? (
-            <p className="text-blue-800 font-medium text-center md:text-lg hover:text-blue-400 active:text-blue-950 dark:text-white">
-              Iniciar Sesión
-            </p>
-
-
-
-
-         {/*arreglar conflicto*/}
-
-
-
-
     <>
       <div className="w-full bg-white dark:bg-[#153862] flex justify-between items-center px-4 sm:px-5 dark:md:px-6 dark:lg:px-10 shadow-sm h-20">
-        <div className="md:inline-flex md:items-center">
+        
+        <div className=" md:order-1 md:inline-flex md:items-center">
           <MenuH />
           <div className="hidden md:flex items-center space-x-8">
             <ul className="flex space-x-6 text-white font-semibold">
@@ -112,32 +53,28 @@ export default function Header() {
           </div>
         </div>
 
-        <img
-          className="block dark:hidden h-10 md:h-16 lg:h-18"
-          src="/images/funval-img-light.png"
-          alt="logo funval"
-        />
-        <img
-          className="hidden dark:block h-18 lg:h-22"
-          src="/images/funval-img-dark.jpg"
-          alt="logo funval"
-        />
+        <div className="md:order-0">
+          <img
+            className="block dark:hidden h-10 md:h-16 lg:h-18"
+            src="/images/funval-img-light.png"
+            alt="logo funval"
+          />
+          <img
+            className="hidden dark:block h-18 lg:h-22"
+            src="/images/funval-img-dark.jpg"
+            alt="logo funval"
+          />
+        </div>
 
         <div
           onClick={() => {
             if (user) setShowLogoutModal(true);
             else setShowLoginModal(true);
           }}
-          className="cursor-pointer animate-bounce [animation-timing-function:ease-in-out] duration-[4s] text-blue-800 font-medium text-center md:text-lg hover:text-blue-400 active:text-blue-950 dark:text-white"
+          className="md:order-2 cursor-pointer animate-bounce [animation-timing-function:ease-in-out] duration-[4s] text-blue-800 font-medium text-center md:text-lg hover:text-blue-400 active:text-blue-950 dark:text-white"
         >
           {!user ? (
-              "Iniciar Sesión"
- 
-
-
-           {/*arreglar conflicto*/}
-
-
+            "Iniciar Sesión"
 
           ) : (
             <div className="text-center">
@@ -149,13 +86,11 @@ export default function Header() {
             </div>
           )}
         </div>
+
       </div >
 
-      {/* Modal de login */}
-      < LoginModal isOpen={showLoginModal} onClose={() => setShowLoginModal(false)
-      } />
+      < LoginModal isOpen={showLoginModal} onClose={() => setShowLoginModal(false)} />
 
-      {/* Modal de confirmación de logout */}
       <LogoutModal
         isOpen={showLogoutModal}
         onClose={async (loggedOut) => {

@@ -12,13 +12,13 @@ export default function HorasDeServicio() {
 
   return (
     <div className="py-8">
-      <h1 className="text-2xl font-bold text-center mb-8 mt-8">
+      <h1 className="text-2xl font-bold text-center mb-8 mt-8 dark:text-white md:text-5xl">
         Horas de Servicio
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 mb-12">
         <div className="bg-white dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden flex flex-col">
-          <div className="border-2 dark:bg-gray-600 h-48 w-full relative"><ServiceCarousel /></div>
+          <div className="border-2 dark:bg-gray-600 h-48 w-full relative"></div>
           <div className="p-6 flex flex-col grow">
             <h2 className="text-xl font-bold mb-2 text-center dark:text-white">
               Reportar horas de servicio
