@@ -9,7 +9,7 @@ export default function MenuH() {
   };
 
   const handleCloseOutside = () => {
-    setOpen(false);
+    setOpen(false); 
   };
 
   const stopPropagation = (e) => {
@@ -22,7 +22,7 @@ export default function MenuH() {
     { label: "General", path: "/General" },
     { label: "Horas de Servicio", path: "/HorasDeServicio" },
     { label: "La Brújula", path: "/LaBrujula" },
-    { label: "Contáctos", path: "/contactos" }, // Asegúrate de crear esta ruta o quitarla
+    { label: "Contáctos", scrollToId: "footer" },
   ];
 
   return (

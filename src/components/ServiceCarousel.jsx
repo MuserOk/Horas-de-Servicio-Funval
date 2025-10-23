@@ -33,7 +33,7 @@ export default function ServiceCarousel() {
   }, [images.length]);
 
   return (
-    <div className="relative lg:max-w-6xl mx-4 overflow-hidden rounded-lg shadow-lg w-[50%]">
+    <div className="relative w-full object-cover">
       <div
         className="flex transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -43,7 +43,7 @@ export default function ServiceCarousel() {
             <img
               src={src}
               alt={`Service photo ${index + 1}`}
-              className="w-full h-auto object-contain"
+              className="w-auto object-center"
             />
           </div>
         ))}
