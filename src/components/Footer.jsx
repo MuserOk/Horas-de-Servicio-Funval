@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <div className='bg-[url(/bg-footer.png)] bg-cover bg-center xs:bg-blue-500 bg-amber-300 dark:bg-gray-800 w-full px-2 sm:px-8 md:px-10 flex items-start justify-between py-2'>
+    <div id='footer' className='bg-[url(/bg-footer.png)] bg-cover bg-center xs:bg-blue-500 bg-amber-300 dark:bg-gray-800 w-full px-2 sm:px-8 md:px-10 flex items-start justify-between py-2'>
       <div className='flex flex-col gap-2 items-center'>
         <h3 className='text-[#18183b] text-xs sm:text-lg font-medium dark:text-white dark:animate-pulse'>Síguenos</h3>
         <div className='flex gap-2'>
