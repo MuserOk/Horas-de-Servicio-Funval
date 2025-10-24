@@ -33,17 +33,17 @@ export default function ServiceCarousel() {
   }, [images.length]);
 
   return (
-    <div className="relative w-full lg:max-w-6xl mx-auto overflow-hidden rounded-lg shadow-lg">
+    <div className="relative w-auto object-cover">
       <div
         className="flex transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((src, index) => (
-          <div key={index} className="flex shrink-0 w-full">
+          <div key={index} className="flex shrink-0 w-auto">
             <img
               src={src}
               alt={`Service photo ${index + 1}`}
-              className="w-full h-auto object-contain"
+              className="w-auto object-center"
             />
           </div>
         ))}
