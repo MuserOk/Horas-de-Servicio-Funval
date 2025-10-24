@@ -1,52 +1,63 @@
-import React, { useState, useRef, useEffect } from "react";
-import { createService } from "../api/Services";
+import React, { useState, useEffect } from "react";
+import api from "../api/axiosConfig"; // Asegúrate de tener tu configuración de Axios
+// Recuerda pasar `service` y `onUpdated` como props desde tu tabla
 
-export default function ModalService({ isOpen, onClose }) {
+export default function ModalServiceUpdate({
+  isOpen,
+  onClose,
+  service,
+  onUpdated,
+}) {
   const [formData, setFormData] = useState({
     cantidad: "",
     descripcion: "",
     categoriaId: "",
-    evidencia: null,
   });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
-  const fileInputRef = useRef(null);
-
+  // Bloquear scroll mientras el modal está abierto
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
-    return () => {
-      document.body.style.overflow = "auto";
-    };
+    return () => (document.body.style.overflow = "auto");
   }, [isOpen]);
 
+  // Cargar datos del servicio seleccionado en el formulario
+  useEffect(() => {
+    if (service) {
+      setFormData({
+        cantidad: service.amount_reported || "",
+        descripcion: service.description || "",
+        categoriaId: service.category?.id || "",
+      });
+    }
+  }, [service]);
+
   const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "file" ? files[0] : value,
+      [name]: value,
     }));
   };
 
-  const handleSubmit = async (e) => {
+  // Función para enviar PATCH a la API
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
+    if (!service?.id) return;
 
     try {
-      await createService({
+      const response = await api.patch(`/services/${service.id}`, {
         amount_reported: formData.cantidad,
         description: formData.descripcion,
         category_id: formData.categoriaId,
-        evidence: formData.evidencia,
       });
-      alert("Horas enviadas correctamente ✅");
+
+      // Llamar callback para actualizar la tabla en el padre
+      if (onUpdated) onUpdated(response.data);
+
       onClose();
-    } catch (err) {
-      console.error(err);
-      setError("Ocurrió un error al enviar las horas ❌");
-    } finally {
-      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      alert("Error al actualizar el servicio.");
     }
   };
 
@@ -55,18 +66,22 @@ export default function ModalService({ isOpen, onClose }) {
   return (
     <div className="fixed inset-0 bg-black/30 flex justify-center items-center z-50 p-4">
       <div className="bg-white w-full max-w-sm p-6 rounded-lg relative flex flex-col max-h-[90vh] overflow-hidden">
+        {/* Botón cerrar */}
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-gray-600 text-2xl font-bold"
         >
           &times;
         </button>
+
         <h2 className="text-xl font-bold mb-4 text-center">
-          Reportar Horas de Servicio
+          Actualizar Horas de Servicio
         </h2>
 
+        {/* Scroll interno */}
         <div className="grow overflow-auto">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <form onSubmit={handleFormSubmit} className="flex flex-col gap-4">
+            {/* Cantidad reportada */}
             <div>
               <label className="block text-sm font-medium mb-1">
                 Cantidad de horas reportadas
@@ -77,11 +92,12 @@ export default function ModalService({ isOpen, onClose }) {
                 value={formData.cantidad}
                 onChange={handleChange}
                 className="w-full border border-gray-300 rounded px-3 py-2 placeholder-gray-400"
-                placeholder="Cantidad de horas reportadas"
+                placeholder="Ej: 5"
                 required
               />
             </div>
 
+            {/* Descripción */}
             <div>
               <label className="block text-sm font-medium mb-1">
                 Descripción
@@ -97,6 +113,7 @@ export default function ModalService({ isOpen, onClose }) {
               />
             </div>
 
+            {/* Selector de categoría */}
             <div>
               <label className="block text-sm font-medium mb-1">
                 Categoría
@@ -105,55 +122,28 @@ export default function ModalService({ isOpen, onClose }) {
                 name="categoriaId"
                 value={formData.categoriaId}
                 onChange={handleChange}
-                className="w-full border border-gray-300 rounded px-3 py-2"
+                className="w-full border border-gray-300 rounded px-3 py-2 text-black"
                 required
               >
                 <option value="">Selecciona una categoría...</option>
                 <option value="1">
-                  Templo e Historia familiar, Indexación
+                  Templo e Historia familiar, Indexacion
                 </option>
                 <option value="2">Instructor</option>
                 <option value="3">Liderazgo</option>
                 <option value="4">Revisión</option>
                 <option value="5">Asistencia al templo</option>
                 <option value="13">Templo</option>
-                <option value="15">Otra categoría</option>
+                <option value="15">Categoría</option>
               </select>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium mb-1">
-                Evidencia
-              </label>
-              <div
-                onClick={() => fileInputRef.current.click()}
-                className="w-full border border-gray-400 rounded px-3 py-2 cursor-pointer bg-gray-100 text-left"
-              >
-                {formData.evidencia
-                  ? formData.evidencia.name
-                  : "Seleccionar archivo PDF..."}
-              </div>
-              <input
-                type="file"
-                name="evidencia"
-                ref={fileInputRef}
-                onChange={handleChange}
-                className="hidden"
-                accept=".pdf"
-              />
-            </div>
-
-            {loading && <p className="text-blue-600 font-bold">Enviando…</p>}
-            {error && <p className="text-red-600 font-bold">{error}</p>}
-
+            {/* Botón de enviar */}
             <button
               type="submit"
-              className={`w-full bg-blue-600 text-white font-semibold py-2 rounded ${
-                loading ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-              disabled={loading}
+              className="w-full bg-blue-600 text-white font-semibold py-2 rounded transform transition duration-200 ease-in-out active:scale-95"
             >
-              {loading ? "Enviando…" : "Guardar cambios"}
+              Guardar cambios
             </button>
           </form>
         </div>

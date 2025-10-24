@@ -22,7 +22,8 @@ export default function MenuH() {
     { label: "General", path: "/General" },
     { label: "Horas de Servicio", path: "/HorasDeServicio" },
     { label: "La Brújula", path: "/LaBrujula" },
-    { label: "Contáctos", scrollToId: "footer" },
+    { label: "ADM", path: "/admin" },
+    { label: "Contáctos", scrollToId: "footer" },   
   ];
 
   return (
@@ -37,9 +38,9 @@ export default function MenuH() {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          strokeWidth={1.5}
+          strokeWidth={1.7}
           stroke="currentColor"
-          className="w-10 h-10 text-black dark:text-white cursor-pointer hover:text-gray-400 active:text-gray-800"
+          className="w-10 h-10 text-gray-50 dark:text-white cursor-pointer hover:text-gray-400 active:text-gray-800"
         >
           <path
             strokeLinecap="round"
@@ -56,7 +57,7 @@ export default function MenuH() {
           onClick={handleCloseOutside}
         >
           <div
-            className="bg-blue-300/90 w-full max-w-xs rounded-b-lg shadow-[0px_1px_8px] p-6 mt-16 h-70 overflow-visible relative border border-white"
+            className="bg-blue-300 w-full max-w-xs rounded-b-lg shadow-md p-6 mt-21.5 h-74 overflow-visible relative"
             onClick={stopPropagation}
           >
             {/* Botón cerrar */}
@@ -73,7 +74,7 @@ export default function MenuH() {
               {menuItems.map(({ label, path }, index) => (
                 <li
                   key={index}
-                  className="hover:text-white active:text-gray-500 hover:bg-blue-900/30 px-4 rounded"
+                  className="hover:text-white text-gray-500 active:text-gray-600 hover:bg-blue-400 px-4 rounded"
                 >
                   <Link
                     to={path}
