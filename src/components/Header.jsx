@@ -21,6 +21,7 @@ export default function Header() {
 
   return (
     <>
+
       <div className="w-full bg-blue-400 bg-[url(/images/international-removebg-preview.png)] bg-no-repeat bg-cover dark:bg-[#153862] flex justify-between items-center px-4 sm:px-5 dark:md:px-6 dark:lg:px-10 shadow-sm py-4">
         <div className=" md:order-1 md:inline-flex md:items-center">
           <MenuH />
@@ -50,12 +51,15 @@ export default function Header() {
             </ul>
           </div>
         </div>
+
           <img className="md:order-0 h-12 lg:h-14" src="/images/funval-img-dark.png" alt="logo funval" />
+
         <div
           onClick={() => {
             if (user) setShowLogoutModal(true);
             else setShowLoginModal(true);
           }}
+
           className="md:order-2 bg-white dark:bg-gray-500  py-1 px-2 rounded cursor-pointer text-blue-400 font-medium text-center md:text-lg hover:text-blue-400 active:text-blue-950 dark:text-white"
         >
           {!user ? (

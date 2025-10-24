@@ -12,6 +12,7 @@ import { Routes, Route } from "react-router-dom";
 import AdminPage from "./pages/AdminPage";
 
 
+
 export default function App() {
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -35,6 +36,7 @@ export default function App() {
     <AuthProvider>
       <div className="flex flex-col min-h-screen max-w-screen">
         <Header />
+
         <main className="relative flex place-items-center-safe bg-white grow bg-[url(/images/background_elements.svg)] bg-no-repeat dark:bg-gray-800 bg-cover lg:justify-end">
           <Routes>
             <Route path="/" element={<PaginaDeBienvenida />} />
