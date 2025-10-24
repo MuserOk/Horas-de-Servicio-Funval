@@ -9,7 +9,8 @@ const menuItems = [
   { label: "Home", path: "/" },
   { label: "General", path: "/General" },
   { label: "Horas de Servicio", path: "/HorasDeServicio" },
-  { label: "La Brújula", path: "/LaBrujula" },
+  { label: "La Brújula", path: "/LaBrujula" }, 
+  { label: "ADM", path: "/admin" }, 
 ];
 
 export default function Header() {
@@ -20,8 +21,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="w-full bg-white dark:bg-[#153862] flex justify-between items-center px-4 sm:px-5 dark:md:px-6 dark:lg:px-10 shadow-sm h-20">
-        
+      <div className="w-full bg-blue-400 bg-[url(/images/international-removebg-preview.png)] bg-no-repeat bg-cover dark:bg-[#153862] flex justify-between items-center px-4 sm:px-5 dark:md:px-6 dark:lg:px-10 shadow-sm py-4">
         <div className=" md:order-1 md:inline-flex md:items-center">
           <MenuH />
           <div className="hidden md:flex items-center space-x-8">
@@ -31,7 +31,7 @@ export default function Header() {
                   {item.path ? (
                     <Link
                       to={item.path}
-                      className="text-black dark:text-white hover:text-blue-300 transition duration-200"
+                      className=" text-white dark:text-white hover:text-gray-100 transition duration-200"
                     >
                       {item.label}
                     </Link>
@@ -41,44 +41,29 @@ export default function Header() {
                         const el = document.getElementById(item.scrollToId);
                         if (el) el.scrollIntoView({ behavior: "smooth" });
                       }}
-                      className="text-black dark:text-white hover:text-blue-300 transition duration-200"
-                    >
+                      className="text-gray-900 dark:text-white hover:text-blue-300 transition duration-200">
                       {item.label}
                     </button>
                   ) : null}
                 </li>
               ))}
             </ul>
-
           </div>
         </div>
-
-        <div className="md:order-0">
-          <img
-            className="block dark:hidden h-10 md:h-16 lg:h-18"
-            src="/images/funval-img-light.png"
-            alt="logo funval"
-          />
-          <img
-            className="hidden dark:block h-18 lg:h-22"
-            src="/images/funval-img-dark.jpg"
-            alt="logo funval"
-          />
-        </div>
-
+          <img className="md:order-0 h-12 lg:h-14" src="/images/funval-img-dark.png" alt="logo funval" />
         <div
           onClick={() => {
             if (user) setShowLogoutModal(true);
             else setShowLoginModal(true);
           }}
-          className="md:order-2 cursor-pointer animate-bounce [animation-timing-function:ease-in-out] duration-[4s] text-blue-800 font-medium text-center md:text-lg hover:text-blue-400 active:text-blue-950 dark:text-white"
+          className="md:order-2 bg-white dark:bg-gray-500  py-1 px-2 rounded cursor-pointer text-blue-400 font-medium text-center md:text-lg hover:text-blue-400 active:text-blue-950 dark:text-white"
         >
           {!user ? (
             "Iniciar Sesión"
 
           ) : (
             <div className="text-center">
-              <p className="text-blue-800 font-medium text-center md:text-lg hover:text-blue-400 active:text-blue-950 dark:text-white">
+              <p className="text-blue-400  bg-white dark:bg-gray-500 py-1 px-2 rounded font-medium text-center md:text-lg hover:text-blue-400 active:text-blue-950 dark:text-white">
                 Cerrar Sesión
               </p>
               <p className="text-xs lg:text-md font-medium animate-pulse text-center dark:text-white dark:font-bold">

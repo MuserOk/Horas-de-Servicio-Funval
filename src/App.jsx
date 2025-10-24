@@ -8,7 +8,8 @@ import ProtectedRoute from "./components/protectedRoute"
 import PaginaDeBienvenida from "./pages/PaginaDeBienvenida";
 import { useEffect } from "react";
 import { AuthProvider } from "./auth/AuthContext";
-import { Routes, Route } from "react-router";
+import { Routes, Route } from "react-router-dom";
+import AdminPage from "./pages/AdminPage";
 
 
 export default function App() {
@@ -32,9 +33,9 @@ export default function App() {
 
   return (
     <AuthProvider>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen max-w-screen">
         <Header />
-        <main className="relative min-h-screen flex-1 flex items-center bg-[url(/images/background_elements.svg)] bg-no-repeat dark:bg-gray-800 bg-cover lg:justify-end">
+        <main className="relative flex place-items-center-safe bg-white grow bg-[url(/images/background_elements.svg)] bg-no-repeat dark:bg-gray-800 bg-cover lg:justify-end">
           <Routes>
             <Route path="/" element={<PaginaDeBienvenida />} />
 
@@ -42,6 +43,7 @@ export default function App() {
             <Route path="/General" element={<ProtectedRoute><General /></ProtectedRoute>} />
             <Route path="/HorasDeServicio" element={<ProtectedRoute><HorasDeServicio /></ProtectedRoute>} />
             <Route path="/LaBrujula" element={<ProtectedRoute><LaBrujula /></ProtectedRoute>} />
+            <Route path="/admin" element={<ProtectedRoute><AdminPage /></ProtectedRoute>} />
 
           </Routes>
         </main>
